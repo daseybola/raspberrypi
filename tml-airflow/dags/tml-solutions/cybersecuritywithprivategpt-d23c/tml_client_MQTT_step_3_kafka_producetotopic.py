@@ -5,9 +5,9 @@ import sys
 from datetime import datetime
 
 default_args = {
-  'mqtt_broker' : 'b526253c5560459da5337e561c142369.s1.eu.hivemq.cloud', # <<<****** Enter MQTT broker i.e. test.mosquitto.org
+  'mqtt_broker' : '3da73457ab8747339f62a7c57ec0915f.s1.eu.hivemq.cloud', # <<<****** Enter MQTT broker i.e. test.mosquitto.org
   'mqtt_port' : '8883', # <<<******** Enter MQTT port i.e. 1883    
-  'mqtt_subscribe_topic' : 'tml/iot', # <<<******** enter name of MQTT to subscribe to i.e. encyclopedia/#
+  'mqtt_subscribe_topic' : 'tml/cybersecurity', # <<<******** enter name of MQTT to subscribe to i.e. encyclopedia/#
   'mqtt_enabletls' : '1', # << Enable TLS if connecting to a cloud cluster like HiveMQ
 }
 
@@ -36,13 +36,9 @@ def mqttconnection():
 
 def publishtomqttbroker(client,line):
  
-     b=client.publish(topic=default_args['mqtt_subscribe_topic'], payload=line, qos=1, retain=False)
-     if 'MQTT_ERR_SUCCESS' in str(b):
-        print(line)
-        client.loop()
-     else:
-        print("ERROR Making a connection to HiveMQ:",b)
-  
+     client.publish(topic=default_args['mqtt_subscribe_topic'], payload=line, qos=1, retain=False)
+     client.loop()
+
 def readdatafile(client,inputfile):
 
   ##############################################################
